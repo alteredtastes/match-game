@@ -21,6 +21,8 @@
   var container = document.createElement('div');
   var cWidth = 700;
   var cHeight = 700;
+  var mouseup;
+  var firstSrc;
 
   var shuffle = function(array) {
     for(i = begin; i <= end; i++) {
@@ -55,7 +57,7 @@
     divs[i].style.width = (cWidth/6).toString() + 'px';
     divs[i].style.height = (cHeight/6).toString() + 'px';
     divs[i].style.border = '1px solid white';
-    divs[i].style.backgroundColor = 'rgba(255,0,0,0.1)';
+    divs[i].style.backgroundColor = 'rgba(0,0,0,0.1)';
   }
 
   for(i = begin; i <= end; i++) {
@@ -65,12 +67,19 @@
     imgs[i].className = 'imgs';
     imgs[i].style.width = '100%';
     imgs[i].style.height = '100%';
+    imgs[i].style.opacity = '0';
     if(i <= Math.floor(end/2)){
       imgs[i].src = srcs[i];
     }else{
       imgs[i].src = srcs[i - Math.ceil(end/2)];
     }
   }
+
+  container.addEventListener('click', function(e) {
+    e.target.style.opacity = '1';
+    firstSrc = e.target.src;
+  })
+  console.log(firstSrc);
 
 
 })();
