@@ -21,8 +21,7 @@
   var container = document.createElement('div');
   var cWidth = 700;
   var cHeight = 700;
-  var mouseup;
-  var firstSrc;
+  var choices = [];
 
   var shuffle = function(array) {
     for(i = begin; i <= end; i++) {
@@ -76,10 +75,23 @@
   }
 
   container.addEventListener('click', function(e) {
-    e.target.style.opacity = '1';
-    firstSrc = e.target.src;
+    if(e.target.style.opacity === '1') {
+      return;
+    }else if(e.target.style.opacity === '0') {
+      e.target.style.opacity = '1';
+      choices.push(e.target);
+      if(choices[0].src === choices[1].src) {
+        alert('yeah! one match!');
+        choices = [];
+      }else if(choices.length === 1){
+        return;
+      }else if(choices[0].src != choices[1].src) {
+        choices[0].style.opacity = '0';
+        alert('sorry!');
+        choices[1].style.opacity = '0';
+        choices = [];
+      }
+    }
   })
-  console.log(firstSrc);
-
 
 })();
