@@ -8,15 +8,15 @@
   var imgs = [];
   var begin = 0;
   var end = 35;
-  var srcs = ['images/0.jpg', 'images/1.jpg',
-              'images/2.jpg', 'images/3.jpg',
-              'images/4.jpg', 'images/5.jpg',
-              'images/6.jpg', 'images/7.jpg',
-              'images/8.jpg', 'images/9.jpg',
-              'images/10.jpg', 'images/11.jpg',
-              'images/12.jpg', 'images/13.jpg',
-              'images/14.jpg', 'images/15.jpg',
-              'images/16.jpg', 'images/17.jpg'];
+  var srcs = ['images/0.png', 'images/1.png',
+              'images/2.png', 'images/3.png',
+              'images/4.png', 'images/5.png',
+              'images/6.png', 'images/7.png',
+              'images/8.png', 'images/9.png',
+              'images/10.png', 'images/11.png',
+              'images/12.png', 'images/13.png',
+              'images/14.png', 'images/15.png',
+              'images/16.png', 'images/17.png'];
   var body = document.getElementsByTagName('body')[0];
   var container = document.createElement('div');
   var cWidth = 700;
@@ -63,10 +63,12 @@
     divs[shuffArray[i]].appendChild(imgs[i]);
     imgs[i].getAttribute('id', 'imgsId' + shuffArray[i].toString());
     imgs[i].className = 'imgs';
+    imgs[i].style.width = '100%';
+    imgs[i].style.height = '100%';
     if(i <= Math.floor(end/2)){
       imgs[i].src = srcs[i];
     }else{
-      imgs[i].src = srcs[i - Math.floor(end/2)];
+      imgs[i].src = srcs[i - Math.ceil(end/2)];
     }
   }
 
