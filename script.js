@@ -19,8 +19,14 @@
               'images/16.png', 'images/17.png'];
   var body = document.getElementsByTagName('body')[0];
   var container = document.createElement('div');
-  var cWidth = 700;
-  var cHeight = 700;
+  var scoreBoard = document.createElement('div');
+  var nameHeader = document.createElement('div');
+  var missCount = document.createElement('div');
+  var matchCount = document.createElement('div');
+  var missedCount = 0;
+  var matchedCount = 0;
+  var cWidth = 600;
+  var cHeight = 600;
   var choices = [];
 
   var shuffle = function(array) {
@@ -38,6 +44,45 @@
   }
 
   shuffArray = shuffle(shuffArray);
+
+  body.appendChild(scoreBoard);
+  scoreBoard.style.position = 'relative';
+  scoreBoard.style.margin = '-20px auto';
+  scoreBoard.style.boxSizing = 'border-box';
+  scoreBoard.style.width = '600px';
+  scoreBoard.style.height = '70px';
+
+  body.appendChild(nameHeader);
+  nameHeader.style.position = 'relative';
+  nameHeader.style.top = '-40px';
+  nameHeader.style.width = '100%';
+  nameHeader.style.fontFamily = 'Helvetica';
+  nameHeader.style.color = 'gold';
+  nameHeader.style.textShadow = '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000';
+  nameHeader.style.fontSize = '50px';
+  nameHeader.style.textDecoration = 'underline';
+  nameHeader.style.textAlign = 'center';
+  nameHeader.innerText = 'STRIKE A MATCH!';
+
+  scoreBoard.appendChild(missCount);
+  missCount.style.position = 'absolute';
+  missCount.style.top = '85px';
+  missCount.style.left = '10px';
+  missCount.style.width = '120px';
+  missCount.style.fontFamily = 'Helvetica';
+  missCount.style.textAlign = 'center';
+  missCount.innerText = 'MISSES: ' + missedCount;
+  missCount.style.border = '1px solid black';
+
+  scoreBoard.appendChild(matchCount);
+  matchCount.style.position = 'absolute';
+  matchCount.style.top = '85px';
+  matchCount.style.right = '10px';
+  matchCount.style.width = '120px';
+  matchCount.style.fontFamily = 'Helvetica';
+  matchCount.style.textAlign = 'center';
+  matchCount.innerText = 'MATCHES: ' + matchedCount;
+  matchCount.style.border = '1px solid black';
 
   body.appendChild(container);
   container.style.margin = '0px auto';
@@ -77,7 +122,7 @@
   container.addEventListener('click', function(e) {
     if(e.target.style.opacity === '1') {
       return;
-    }else if(e.target.style.opacity === '0') {
+    }else{
       e.target.style.opacity = '1';
       choices.push(e.target);
       if(choices[0].src === choices[1].src) {
